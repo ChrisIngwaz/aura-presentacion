@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraSync | La Coordinadora que Nunca Duerme</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .serif { font-family: 'Playfair Display', serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #1e3a8a 0%, #c2410c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .chat-bubble {
+            position: relative;
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 16px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .chat-client {
+            background: #f3f4f6;
+            color: #1f2937;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+        .chat-aura {
+            background: #1e3a8a;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+        .money-counter {
+            font-variant-numeric: tabular-nums;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 overflow-x-hidden">
+
+    <!-- Navegación -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md border-b border-slate-200 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-blue-900 rounded-full flex items-center justify-center text-white font-bold serif">A</div>
+                    <span class="font-semibold text-xl tracking-tight text-blue-900">AuraSync</span>
+                </div>
+                <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-600">
+                    <a href="#problema" class="hover:text-blue-900 transition">El Robo</a>
+                    <a href="#solucion" class="hover:text-blue-900 transition">La Solución</a>
+                    <a href="#numeros" class="hover:text-blue-900 transition">Los Números</a>
+                </div>
+                <button onclick="document.getElementById('cta').scrollIntoView({behavior: 'smooth'})" class="bg-orange-600 text-white px-6 py-2 rounded-full text-sm font-semibold hover:bg-orange-700 transition shadow-lg shadow-orange-600/20">
+                    Quiero Aura
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO: El dolor -->
+    <section id="problema" class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 text-red-700 text-sm font-semibold border border-red-100">
+                    <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+                    73% de los salones pierden dinero por atención telefónica deficiente
+                </div>
+                
+                <h1 class="serif text-5xl md:text-7xl font-bold leading-tight text-slate-900">
+                    Está perdiendo <span class="text-orange-600">$17,000</span> al año... y ni siquiera lo sabe.
+                </h1>
+                
+                <p class="text-xl text-slate-600 leading-relaxed max-w-lg">
+                    Cada llamada no contestada, cada "déjeme verificar" y cada doble-booking es dinero que sale de su bolsillo. Haga el cálculo usted mismo:
+                </p>
+
+                <!-- Calculadora Interactiva -->
+                <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 md:p-8 space-y-6">
+                    <h3 class="font-semibold text-lg text-slate-900 flex items-center gap-2">
+                        <i data-lucide="calculator" class="w-5 h-5 text-blue-900"></i>
+                        Calculadora de Pérdidas
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-600 mb-1">Ticket promedio de su salón (USD)</label>
+                            <input type="number" id="ticket" value="45" class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-900 focus:border-transparent" oninput="calcularPerdida()">
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs text-slate-500 mb-1">Llamadas perdidas/semana</label>
+                                <input type="number" id="llamadas" value="16" class="w-full px-3 py-2 rounded border border-slate-200" oninput="calcularPerdida()">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-slate-500 mb-1">Tasa de conversión</label>
+                                <select id="conversion" class="w-full px-3 py-2 rounded border border-slate-200" onchange="calcularPerdida()">
+                                    <option value="0.3">30%</option>
+                                    <option value="0.4" selected>40%</option>
+                                    <option value="0.5">50%</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-slate-100 pt-4">
+                        <div class="text-sm text-slate-500 mb-1">Pérdida mensual estimada:</div>
+                        <div class="text-4xl font-bold text-red-600 money-counter" id="perdida-mensual">$1,152</div>
+                        <div class="text-xs text-slate-400 mt-1">Sin contar errores de agenda ni reputación</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visualización del Problema -->
+            <div class="relative">
+                <div class="absolute inset-0 bg-gradient-to-tr from-blue-900/10 to-orange-500/10 rounded-3xl transform rotate-3"></div>
+                <div class="relative bg-white rounded-3xl shadow-2xl p-8 border border-slate-100">
+                    <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        <span class="ml-2 text-sm text-slate-400 font-medium">Su agenda actual</span>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-4 p-3 bg-red-50 rounded-lg border border-red-100">
+                            <i data-lucide="phone-missed" class="w-8 h-8 text-red-500"></i>
+                            <div>
+                                <div class="font-semibold text-red-900">8 llamadas fuera de horario</div>
+                                <div class="text-sm text-red-700">Esta semana, mientras cerraba</div>
+                            </div>
+                            <div class="ml-auto font-bold text-red-600">-$360</div>
+                        </div>
+                        
+                        <div class="flex items-center gap-4 p-3 bg-orange-50 rounded-lg border border-orange-100">
+                            <i data-lucide="users" class="w-8 h-8 text-orange-500"></i>
+                            <div>
+                                <div class="font-semibold text-orange-900">Doble booking</div>
+                                <div class="text-sm text-orange-700">Carlos atiende a 2 clientes a las 3:00pm</div>
+                            </div>
+                            <div class="ml-auto font-bold text-orange-600">-$90</div>
+                        </div>
+
+                        <div class="flex items-center gap-4 p-3 bg-slate-50 rounded-lg border border-slate-200 opacity-60">
+                            <i data-lucide="clock" class="w-8 h-8 text-slate-400"></i>
+                            <div>
+                                <div class="font-semibold text-slate-700">3 horas ociosas</div>
+                                <div class="text-sm text-slate-500">Especialista esperando por no-show</div>
+                            </div>
+                            <div class="ml-auto font-bold text-slate-400">-$36</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-6 border-t border-slate-200">
+                        <div class="flex justify-between items-center text-lg font-bold">
+                            <span class="text-slate-700">Total esta semana:</span>
+                            <span class="text-red-600 text-2xl">-$486</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: La Solución (Aura) -->
+    <section id="solucion" class="bg-blue-900 text-white py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-orange-500 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="serif text-4xl md:text-6xl font-bold mb-6">Conozca a <span class="text-orange-400">Aura</span></h2>
+                <p class="text-xl text-blue-100 leading-relaxed">
+                    La única coordinadora que contesta WhatsApp las 24 horas, valida disponibilidad en tiempo real y vende sus servicios como si fuera la dueña.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+                    <div class="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="message-circle" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Atención Instantánea</h3>
+                    <p class="text-blue-100">Responde en segundos. Nunca está ocupada. Nunca se distrae con Instagram mientras atiende.</p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+                    <div class="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="brain" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Vende con Expertise</h3>
+                    <p class="text-blue-100">Sabe que Elena es experta en nail art y Carlos en colorimetría. Recomienda al especialista correcto y vende más.</p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+                    <div class="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="shield-check" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Cero Errores</h3>
+                    <p class="text-blue-100">Verifica disponibilidad antes de confirmar. No hay doble-booking, no hay "déjeme revisar". Si hay espacio, lo sabe.</p>
+                </div>
+            </div>
+
+            <!-- Simulación de Chat -->
+            <div class="max-w-md mx-auto bg-slate-100 rounded-3xl overflow-hidden shadow-2xl">
+                <div class="bg-slate-200 px-4 py-3 flex items-center gap-3 border-b border-slate-300">
+                    <div class="w-10 h-10 bg-blue-900 rounded-full flex items-center justify-center text-white font-bold">A</div>
+                    <div>
+                        <div class="font-semibold text-slate-900">AuraSync</div>
+                        <div class="text-xs text-green-600 flex items-center gap-1">
+                            <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                            En línea
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 flex flex-col bg-[#e5ddd5] h-96 overflow-y-auto space-y-3">
+                    <div class="chat-bubble chat-client">
+                        Hola, quiero agendar manicure para mañana a las 3pm
+                    </div>
+                    <div class="chat-bubble chat-aura">
+                        Perfecto, para mañana a las 15:00 tengo a Elena, nuestra nail artist experta en diseños personalizados que duran semanas perfectas. ¿Te gustaría con ella?
+                    </div>
+                    <div class="chat-bubble chat-client">
+                        Sí, suena bien
+                    </div>
+                    <div class="chat-bubble chat-aura">
+                        Listo, te queda agendado para mañana a las 15:00 con Elena para Manicura. ¿Confirmamos? ✅
+                    </div>
+                    <div class="text-center text-xs text-slate-500 my-2">Aura registró la cita en Airtable y Supabase automáticamente</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: Comparativa -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-white">
+        <h2 class="serif text-4xl font-bold text-center mb-16 text-slate-900">Antes vs. Con Aura</h2>
+        
+        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <!-- Antes -->
+            <div class="border-2 border-slate-200 rounded-2xl p-8 bg-slate-50">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600 font-bold">✕</div>
+                    <h3 class="text-2xl font-bold text-slate-400">Recepcionista Tradicional</h3>
+                </div>
+                <ul class="space-y-4 text-slate-500">
+                    <li class="flex items-start gap-3">
+                        <span class="text-red-400 mt-1">•</span>
+                        <span>Atiende solo en horario laboral (9am-6pm)</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-red-400 mt-1">•</span>
+                        <span>Se distrae con redes sociales o atención presencial</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-red-400 mt-1">•</span>
+                        <span>Olvida revisar disponibilidad → doble-booking</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-red-400 mt-1">•</span>
+                        <span>Costo: $500-800/mes + seguros + vacaciones</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-red-400 mt-1">•</span>
+                        <span>Cuando está ocupada, suena ocupado</span>
+                    </li>
+                </ul>
+                <div class="mt-8 pt-6 border-t border-slate-200">
+                    <div class="text-sm text-slate-400">Eficiencia</div>
+                    <div class="w-full bg-slate-200 rounded-full h-2 mt-2">
+                        <div class="bg-red-400 h-2 rounded-full" style="width: 40%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Con Aura -->
+            <div class="border-2 border-blue-900 rounded-2xl p-8 bg-blue-50 relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-orange-500 text-white text-xs font-bold px-4 py-1 rounded-bl-lg">RECOMENDADO</div>
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center text-white font-bold">A</div>
+                    <h3 class="text-2xl font-bold text-blue-900">AuraSync</h3>
+                </div>
+                <ul class="space-y-4 text-slate-700">
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-500 mt-1 font-bold">✓</span>
+                        <span class="font-medium">Atiende 24/7, incluso mientras duerme</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-500 mt-1 font-bold">✓</span>
+                        <span class="font-medium">Nunca se distrae. Cada mensaje es prioridad</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-500 mt-1 font-bold">✓</span>
+                        <span class="font-medium">Valida agenda antes de confirmar. Cero errores.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-500 mt-1 font-bold">✓</span>
+                        <span class="font-medium">Inversión: $379/mes. Sin costos ocultos.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-500 mt-1 font-bold">✓</span>
+                        <span class="font-medium">Atiende 50 conversaciones simultáneas sin espera</span>
+                    </li>
+                </ul>
+                <div class="mt-8 pt-6 border-t border-blue-200">
+                    <div class="text-sm text-blue-900 font-semibold">Eficiencia</div>
+                    <div class="w-full bg-blue-200 rounded-full h-2 mt-2">
+                        <div class="bg-green-500 h-2 rounded-full" style="width: 98%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: Los Números -->
+    <section id="numeros" class="bg-slate-900 text-white py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="serif text-4xl md:text-5xl font-bold mb-6">La matemática es simple</h2>
+                    <p class="text-xl text-slate-300 mb-8">
+                        Aura no es un gasto, es un activo que se paga solo. Compare:
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg border border-white/10">
+                            <span class="text-slate-300">Pérdida mensual por llamadas perdidas</span>
+                            <span class="text-2xl font-bold text-red-400" id="resumen-perdida">$1,152</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg border border-white/10">
+                            <span class="text-slate-300">Inversión en Aura</span>
+                            <span class="text-2xl font-bold text-green-400">$379</span>
+                        </div>
+                        <div class="flex justify-between items-center p-6 bg-orange-600/20 rounded-lg border border-orange-500/30">
+                            <span class="text-orange-200 font-semibold">AHORRO NETO MENSUAL</span>
+                            <span class="text-3xl font-bold text-orange-400" id="resumen-ahorro">$773</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 p-4 bg-blue-900/30 rounded-lg border-l-4 border-blue-500">
+                        <p class="text-blue-200 text-sm">
+                            <strong>ROI en 60 días:</strong> La inversión inicial de $1,900 se recupera en las primeras 5 semanas. Después, es ganancia pura.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white text-slate-900 rounded-3xl p-8 shadow-2xl">
+                    <h3 class="text-2xl font-bold mb-6 text-center">¿Cuánto deja de perder?</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-600 mb-2">Especialistas en su local</label>
+                            <input type="range" min="1" max="10" value="4" class="w-full accent-blue-900" oninput="updateEspecialistas(this.value)" id="range-esp">
+                            <div class="flex justify-between text-xs text-slate-400 mt-1">
+                                <span>1</span>
+                                <span id="val-esp" class="font-bold text-blue-900 text-base">4</span>
+                                <span>10</span>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-slate-200 pt-6 space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-600">Citas recuperadas/mes</span>
+                                <span class="font-bold text-2xl text-blue-900" id="citas-rec">~25</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-600">Ingreso adicional mensual</span>
+                                <span class="font-bold text-2xl text-green-600" id="ingreso-add">$1,125</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-600">Costo Aura (setup + mes)</span>
+                                <span class="font-bold text-xl text-slate-400">$2,279</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-green-50 rounded-xl p-4 text-center border border-green-200">
+                            <div class="text-sm text-green-700 mb-1">Punto de equilibrio</div>
+                            <div class="text-3xl font-bold text-green-700">21 días</div>
+                            <div class="text-xs text-green-600 mt-1">En 3 semanas ya ganó más de lo que invirtió</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: Garantía y CTA -->
+    <section id="cta" class="py-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100 text-green-800 text-sm font-bold mb-8 border border-green-200">
+            <i data-lucide="shield-check" class="w-4 h-4"></i>
+            GARANTÍA DE 30 DÍAS
+        </div>
+
+        <h2 class="serif text-5xl md:text-6xl font-bold text-slate-900 mb-6">
+            Implementación en 48 horas.<br>
+            <span class="text-blue-900">Resultados inmediatos.</span>
+        </h2>
+
+        <p class="text-xl text-slate-600 mb-12 max-w-2xl mx-auto">
+            Si en el primer mes Aura no recupera al menos el 50% de su inversión, le devolvemos el 100% del setup. Sin preguntas.
+        </p>
+
+        <div class="bg-white rounded-3xl shadow-2xl border border-slate-200 p-8 md:p-12 max-w-2xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-8">
+                <div class="text-center">
+                    <div class="text-sm text-slate-500 mb-1">Setup inicial</div>
+                    <div class="text-4xl font-bold text-slate-900">$1,900</div>
+                    <div class="text-xs text-slate-400">Un solo pago</div>
+                </div>
+                <div class="text-slate-300 text-4xl font-light hidden md:block">+</div>
+                <div class="text-center">
+                    <div class="text-sm text-slate-500 mb-1">Soporte mensual</div>
+                    <div class="text-4xl font-bold text-blue-900">$379</div>
+                    <div class="text-xs text-slate-400">Cancela cuando quieras</div>
+                </div>
+            </div>
+
+            <button class="w-full bg-orange-600 text-white text-xl font-bold py-4 rounded-xl hover:bg-orange-700 transition shadow-xl shadow-orange-600/20 mb-4 flex items-center justify-center gap-3">
+                <span>Agendar Demo Privada</span>
+                <i data-lucide="arrow-right" class="w-6 h-6"></i>
+            </button>
+
+            <p class="text-sm text-slate-500">
+                O escriba por WhatsApp: <a href="#" class="text-blue-900 font-semibold hover:underline">+52 1 55 1234 5678</a>
+            </p>
+        </div>
+
+        <div class="mt-16 grid md:grid-cols-3 gap-8 text-left max-w-4xl mx-auto">
+            <div class="flex gap-4">
+                <i data-lucide="check-circle" class="w-6 h-6 text-green-500 flex-shrink-0"></i>
+                <div>
+                    <div class="font-bold text-slate-900">Sin contratos forzosos</div>
+                    <div class="text-sm text-slate-500">Mes a mes. Usted decide.</div>
+                </div>
+            </div>
+            <div class="flex gap-4">
+                <i data-lucide="check-circle" class="w-6 h-6 text-green-500 flex-shrink-0"></i>
+                <div>
+                    <div class="font-bold text-slate-900">Capacitación incluida</div>
+                    <div class="text-sm text-slate-500">Le enseñamos a usar el panel en 30 minutos.</div>
+                </div>
+            </div>
+            <div class="flex gap-4">
+                <i data-lucide="check-circle" class="w-6 h-6 text-green-500 flex-shrink-0"></i>
+                <div>
+                    <div class="font-bold text-slate-900">Soporte humano</div>
+                    <div class="text-sm text-slate-500">No es solo IA, hay equipo técnico real detrás.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-50 border-t border-slate-200 py-12 px-4 text-center text-slate-500 text-sm">
+        <p>© 2026 AuraSync. Todos los derechos reservados.</p>
+        <p class="mt-2">La coordinadora que nunca duerme.</p>
+    </footer>
+
+    <script>
+        // Inicializar iconos
+        lucide.createIcons();
+
+        // Calculadora de pérdidas
+        function calcularPerdida() {
+            const ticket = parseInt(document.getElementById('ticket').value) || 45;
+            const llamadas = parseInt(document.getElementById('llamadas').value) || 16;
+            const conversion = parseFloat(document.getElementById('conversion').value) || 0.4;
+            
+            const semanasMes = 4.3;
+            const citasPerdidas = llamadas * conversion;
+            const perdidaMensual = Math.round(citasPerdidas * ticket * semanasMes);
+            
+            document.getElementById('perdida-mensual').textContent = '$' + perdidaMensual.toLocaleString();
+            document.getElementById('perdida-mensual').classList.add('scale-110');
+            setTimeout(() => document.getElementById('perdida-mensual').classList.remove('scale-110'), 200);
+            
+            // Actualizar también el resumen de la sección oscura
+            document.getElementById('resumen-perdida').textContent = '$' + perdidaMensual.toLocaleString();
+            const ahorro = perdidaMensual - 379;
+            document.getElementById('resumen-ahorro').textContent = '$' + (ahorro > 0 ? ahorro.toLocaleString() : 0);
+        }
+
+        // Calculadora de especialistas
+        function updateEspecialistas(val) {
+            document.getElementById('val-esp').textContent = val;
+            const ticket = 45;
+            const citasPorEsp = 6; // citas recuperables por esp/semana
+            const totalCitas = Math.round(val * citasPorEsp * 4.3);
+            const ingreso = totalCitas * ticket;
+            
+            document.getElementById('citas-rec').textContent = '~' + totalCitas;
+            document.getElementById('ingreso-add').textContent = '$' + ingreso.toLocaleString();
+        }
+
+        // Inicializar
+        calcularPerdida();
+        updateEspecialistas(4);
+    </script>
+</body>
+</html>
