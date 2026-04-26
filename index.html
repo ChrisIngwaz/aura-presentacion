@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AuraSync | El Estándar de Oro Operativo</title>
-    <!-- Favicon usando el isologo -->
-    <link rel="icon" type="image/png" href="./aurasync-isotipo.png">
+    <link rel="icon" type="image/png" href="https://aurasync.digital/aurasync-isotipo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,12 +16,15 @@
                 extend: {
                     colors: {
                         aura: {
-                            dark: '#0f172a',
+                            dark: '#0a0f1a',
+                            darker: '#070a12',
                             blue: '#1e3a8a',
                             purple: '#7c3aed',
-                            gold: '#d4af37',
-                            goldLight: '#fbbf24',
-                            surface: '#1e293b',
+                            gold: '#c9a84c',
+                            goldLight: '#e8d5a3',
+                            goldDark: '#a08030',
+                            surface: '#111827',
+                            surfaceLight: '#1a2234',
                         }
                     }
                 }
@@ -30,68 +32,149 @@
         }
     </script>
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body { font-family: 'Inter', sans-serif; background: #0a0f1a; }
         .serif { font-family: 'Playfair Display', serif; }
         .gradient-text {
-            background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 50%, #d4af37 100%);
+            background: linear-gradient(135deg, #c9a84c 0%, #e8d5a3 50%, #c9a84c 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         .gold-gradient {
-            background: linear-gradient(135deg, #d4af37 0%, #fbbf24 50%, #d4af37 100%);
+            background: linear-gradient(135deg, #c9a84c 0%, #e8d5a3 50%, #c9a84c 100%);
+        }
+        .gold-gradient-hover:hover {
+            background: linear-gradient(135deg, #d4b55c 0%, #f0e0b8 50%, #d4b55c 100%);
+            box-shadow: 0 0 30px rgba(201, 168, 76, 0.4);
         }
         .glass-card {
-            background: rgba(30, 41, 59, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            background: linear-gradient(145deg, rgba(17, 24, 39, 0.9) 0%, rgba(10, 15, 26, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(201, 168, 76, 0.15);
+        }
+        .glass-card-premium {
+            background: linear-gradient(145deg, rgba(17, 24, 39, 0.95) 0%, rgba(26, 34, 52, 0.9) 50%, rgba(17, 24, 39, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            box-shadow: 0 8px 32px rgba(201, 168, 76, 0.1), inset 0 1px 0 rgba(255,255,255,0.05);
         }
         .chat-bubble {
             position: relative;
-            max-width: 80%;
-            padding: 12px 16px;
-            border-radius: 16px;
-            margin-bottom: 8px;
+            max-width: 85%;
+            padding: 14px 18px;
+            border-radius: 20px;
+            margin-bottom: 10px;
             font-size: 14px;
-            line-height: 1.4;
+            line-height: 1.5;
         }
         .chat-client {
-            background: #334155;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
             color: #f1f5f9;
             align-self: flex-start;
-            border-bottom-left-radius: 4px;
+            border-bottom-left-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.08);
         }
         .chat-aura {
-            background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #4c1d95 100%);
             color: white;
             align-self: flex-end;
-            border-bottom-right-radius: 4px;
+            border-bottom-right-radius: 6px;
+            border: 1px solid rgba(201, 168, 76, 0.2);
         }
         .logo-glow {
-            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
+            filter: drop-shadow(0 0 25px rgba(201, 168, 76, 0.3));
+        }
+        .premium-border {
+            position: relative;
+        }
+        .premium-border::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: inherit;
+            background: linear-gradient(135deg, rgba(201,168,76,0.3), transparent, rgba(201,168,76,0.3));
+            z-index: -1;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.05) 0%, rgba(17, 24, 39, 0.8) 100%);
+            border: 1px solid rgba(201, 168, 76, 0.2);
+        }
+        .pulse-gold {
+            animation: pulse-gold 2s infinite;
+        }
+        @keyframes pulse-gold {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(201, 168, 76, 0); }
+        }
+        .teaser-input {
+            background: rgba(17, 24, 39, 0.8);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            transition: all 0.3s ease;
+        }
+        .teaser-input:focus {
+            border-color: #c9a84c;
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
+            outline: none;
+        }
+        .reveal-card {
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.08) 0%, rgba(17, 24, 39, 0.9) 100%);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+        }
+        .hidden-loss {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        .hidden-loss.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .metric-highlight {
+            background: linear-gradient(90deg, rgba(201,168,76,0.1) 0%, transparent 100%);
+            border-left: 3px solid #c9a84c;
+        }
+        .step-number {
+            background: linear-gradient(135deg, #c9a84c 0%, #a08030 100%);
+            color: #0a0f1a;
+            font-weight: 700;
+        }
+        .comparison-row {
+            transition: all 0.3s ease;
+        }
+        .comparison-row:hover {
+            background: rgba(201, 168, 76, 0.05);
+        }
+        .badge-premium {
+            background: linear-gradient(135deg, rgba(201,168,76,0.15) 0%, rgba(201,168,76,0.05) 100%);
+            border: 1px solid rgba(201,168,76,0.3);
+            color: #e8d5a3;
         }
     </style>
+<base target="_blank">
 </head>
 <body class="bg-aura-dark text-slate-100 overflow-x-hidden">
 
-    <!-- Navegación: Isologo + Nombre -->
-    <nav class="fixed w-full bg-aura-dark/95 backdrop-blur-md border-b border-aura-gold/20 z-50">
+    <!-- Navegación Premium -->
+    <nav class="fixed w-full bg-aura-dark/95 backdrop-blur-xl border-b border-aura-gold/20 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
                 <div class="flex items-center gap-3">
-                    <!-- Isologo pequeño en nav -->
-                    <img src="./aurasync-isotipo.png" alt="AuraSync" class="w-10 h-10 logo-glow rounded-full bg-transparent">
+                    <img src="https://aurasync.digital/aurasync-isotipo.png" alt="AuraSync" class="w-10 h-10 logo-glow rounded-full bg-transparent">
                     <div>
                         <span class="font-bold text-2xl tracking-tight text-white serif">AuraSync</span>
-                        <div class="text-xs text-aura-gold tracking-widest uppercase">El Estándar de Oro</div>
+                        <div class="text-xs text-aura-gold tracking-[0.2em] uppercase font-medium">El Estándar de Oro</div>
                     </div>
                 </div>
-                <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-300">
-                    <a href="#problema" class="hover:text-aura-gold transition">El Robo</a>
-                    <a href="#solucion" class="hover:text-aura-gold transition">La Solución</a>
-                    <a href="#numeros" class="hover:text-aura-gold transition">Los Números</a>
+                <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-400">
+                    <a href="#problema" class="hover:text-aura-gold transition-colors">El Robo Silencioso</a>
+                    <a href="#analisis" class="hover:text-aura-gold transition-colors">Análisis Inteligente</a>
+                    <a href="#solucion" class="hover:text-aura-gold transition-colors">La Solución</a>
+                    <a href="#como-funciona" class="hover:text-aura-gold transition-colors">Cómo Funciona</a>
                 </div>
-                <a href="https://wa.me/593995430859?text=Hola%20AuraSync,%20quiero%20agendar%20una%20demo%20privada" target="_blank" class="gold-gradient text-aura-dark px-6 py-3 rounded-full text-sm font-bold hover:shadow-lg hover:shadow-aura-gold/30 transition flex items-center gap-2">
-                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                <a href="https://wa.me/593995430859?text=Hola%20AuraSync,%20quiero%20agendar%20una%20demo%20privada" 
+                   target="_blank" 
+                   class="gold-gradient gold-gradient-hover text-aura-dark px-6 py-3 rounded-full text-sm font-bold transition-all duration-300 flex items-center gap-2">
+                    <i data-lucide="calendar-check" class="w-4 h-4"></i>
                     Agendar Demo
                 </a>
             </div>
@@ -100,230 +183,742 @@
 
     <!-- HERO -->
     <section id="problema" class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
             <div class="space-y-8">
                 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 text-red-400 text-sm font-semibold border border-red-500/20">
-                    <i data-lucide="alert-triangle" class="w-4 h-4"></i>
-                    73% de los salones pierden dinero por atención telefónica deficiente
+                    <i data-lucide="trending-down" class="w-4 h-4"></i>
+                    El 73% de los salones pierde dinero sin darse cuenta
                 </div>
-                
-                <h1 class="serif text-5xl md:text-7xl font-bold leading-tight text-white">
-                    Está perdiendo <span class="text-aura-gold">$17,000</span> al año... y ni siquiera lo sabe.
+
+                <h1 class="serif text-5xl md:text-7xl font-bold leading-[1.1] text-white">
+                    Hay <span class="gradient-text">dinero fugado</span> en su salón. Y ni siquiera lo ve.
                 </h1>
-                
-                <p class="text-xl text-slate-300 leading-relaxed max-w-lg">
-                    Cada llamada no contestada, cada "déjeme verificar" y cada doble-booking es dinero que sale de su bolsillo. Haga el cálculo usted mismo:
+
+                <p class="text-xl text-slate-400 leading-relaxed max-w-lg">
+                    Cada llamada no contestada, cada no-show, cada doble-booking es dinero que desaparece. 
+                    <span class="text-aura-gold font-medium">La mayoría de dueños solo ven la punta del iceberg.</span>
                 </p>
 
-                <!-- Calculadora -->
-                <div class="glass-card rounded-2xl p-6 md:p-8 space-y-6">
-                    <h3 class="font-semibold text-lg text-white flex items-center gap-2">
-                        <i data-lucide="calculator" class="w-5 h-5 text-aura-gold"></i>
-                        Calculadora de Pérdidas
-                    </h3>
-                    
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium text-slate-400 mb-1">Ticket promedio (USD)</label>
-                            <input type="number" id="ticket" value="45" class="w-full px-4 py-2 rounded-lg bg-aura-surface border border-aura-gold/30 text-white focus:ring-2 focus:ring-aura-gold focus:border-transparent" oninput="calcularPerdida()">
+                <!-- Teaser de Análisis Inteligente -->
+                <div class="glass-card-premium rounded-2xl p-6 md:p-8 space-y-6 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-aura-gold/5 rounded-full blur-3xl"></div>
+
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-10 h-10 rounded-xl gold-gradient flex items-center justify-center">
+                            <i data-lucide="bar-chart-3" class="w-5 h-5 text-aura-dark"></i>
                         </div>
-                        
+                        <div>
+                            <h3 class="font-semibold text-lg text-white">Análisis de Pérdidas — Vista Previa</h3>
+                            <p class="text-xs text-aura-gold">Ingrese 3 datos básicos para revelar su fuga mensual</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
                         <div class="grid grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-xs text-slate-500 mb-1">Llamadas perdidas/semana</label>
-                                <input type="number" id="llamadas" value="16" class="w-full px-3 py-2 rounded bg-aura-surface border border-aura-gold/30 text-white" oninput="calcularPerdida()">
+                                <label class="block text-xs font-medium text-slate-500 mb-1.5 uppercase tracking-wider">Ticket Promedio (USD)</label>
+                                <input type="number" id="ticket" value="45" class="teaser-input w-full px-4 py-3 rounded-xl text-white text-lg font-semibold" oninput="calcularTeaser()">
                             </div>
                             <div>
-                                <label class="block text-xs text-slate-500 mb-1">Tasa de conversión</label>
-                                <select id="conversion" class="w-full px-3 py-2 rounded bg-aura-surface border border-aura-gold/30 text-white" onchange="calcularPerdida()">
-                                    <option value="0.3">30%</option>
-                                    <option value="0.4" selected>40%</option>
-                                    <option value="0.5">50%</option>
-                                </select>
+                                <label class="block text-xs font-medium text-slate-500 mb-1.5 uppercase tracking-wider">Citas / Semana</label>
+                                <input type="number" id="citas" value="60" class="teaser-input w-full px-4 py-3 rounded-xl text-white text-lg font-semibold" oninput="calcularTeaser()">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium text-slate-500 mb-1.5 uppercase tracking-wider">Tasa de No-Shows Actual (%)</label>
+                            <div class="flex items-center gap-3">
+                                <input type="range" id="noshow-slider" value="25" min="5" max="50" class="flex-1 accent-aura-gold" oninput="syncNoShow(this.value); calcularTeaser()">
+                                <span id="noshow-display" class="text-2xl font-bold text-aura-gold w-16 text-right">25%</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="border-t border-aura-gold/20 pt-4">
-                        <div class="text-sm text-slate-400 mb-1">Pérdida mensual estimada:</div>
-                        <div class="text-4xl font-bold text-red-400" id="perdida-mensual">$1,152</div>
+                    <!-- Resultado teaser -->
+                    <div class="border-t border-aura-gold/20 pt-5">
+                        <div class="flex justify-between items-end mb-3">
+                            <div>
+                                <div class="text-sm text-slate-400">Pérdida mensual estimada</div>
+                                <div class="text-sm text-slate-500">Solo por no-shows + llamadas</div>
+                            </div>
+                            <div class="text-4xl md:text-5xl font-bold text-red-400" id="perdida-mensual">$2,295</div>
+                        </div>
+
+                        <!-- Gancho: datos ocultos -->
+                        <div id="hidden-losses" class="hidden-loss mt-4 p-4 rounded-xl reveal-card">
+                            <div class="flex items-start gap-3">
+                                <i data-lucide="lock-open" class="w-5 h-5 text-aura-gold mt-0.5 flex-shrink-0"></i>
+                                <div>
+                                    <p class="text-sm text-aura-goldLight font-medium mb-1">Datos revelados del análisis completo:</p>
+                                    <ul class="text-sm text-slate-400 space-y-1">
+                                        <li class="flex items-center gap-2">
+                                            <i data-lucide="x-circle" class="w-3 h-3 text-red-400"></i>
+                                            <span id="noshow-loss">No-shows: $1,935/mes</span>
+                                        </li>
+                                        <li class="flex items-center gap-2">
+                                            <i data-lucide="x-circle" class="w-3 h-3 text-red-400"></i>
+                                            <span id="llamada-loss">Llamadas perdidas: $360/mes</span>
+                                        </li>
+                                        <li class="flex items-center gap-2">
+                                            <i data-lucide="x-circle" class="w-3 h-3 text-red-400"></i>
+                                            <span id="error-loss">Errores de agenda: ~$200/mes</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CTA a calculadora completa -->
+                        <div class="mt-5 p-4 rounded-xl bg-gradient-to-r from-aura-gold/10 to-transparent border border-aura-gold/20">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-aura-gold/20 flex items-center justify-center pulse-gold">
+                                        <i data-lucide="sparkles" class="w-4 h-4 text-aura-gold"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-white font-medium">Análisis completo disponible</p>
+                                        <p class="text-xs text-slate-500">Incluye huecos en agenda, cancelaciones last-minute, upsell perdido</p>
+                                    </div>
+                                </div>
+                                <a href="https://wa.me/593995430859?text=Hola%20AuraSync,%20quiero%20el%20análisis%20completo%20de%20pérdidas%20de%20mi%20salón" 
+                                   target="_blank"
+                                   class="gold-gradient text-aura-dark px-5 py-2.5 rounded-lg text-sm font-bold hover:shadow-lg hover:shadow-aura-gold/30 transition whitespace-nowrap flex items-center gap-2">
+                                    <span>Ver análisis completo</span>
+                                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Visual -->
+            <!-- Visual del Problema -->
             <div class="relative">
-                <div class="absolute inset-0 bg-gradient-to-tr from-aura-blue/20 to-aura-gold/10 rounded-3xl transform rotate-3"></div>
-                <div class="relative glass-card rounded-3xl p-8">
+                <div class="absolute -inset-4 bg-gradient-to-tr from-aura-blue/10 via-transparent to-aura-gold/10 rounded-3xl"></div>
+                <div class="relative glass-card-premium rounded-3xl p-8">
                     <div class="flex items-center gap-3 mb-6 pb-4 border-b border-aura-gold/20">
-                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                        <span class="ml-2 text-sm text-slate-400 font-medium">Su agenda actual</span>
-                    </div>
-                    
-                    <div class="space-y-3">
-                        <div class="flex items-center gap-4 p-3 bg-red-500/10 rounded-lg border border-red-500/20">
-                            <i data-lucide="phone-missed" class="w-8 h-8 text-red-400"></i>
-                            <div>
-                                <div class="font-semibold text-red-200">8 llamadas fuera de horario</div>
-                                <div class="text-sm text-red-400">Esta semana, mientras cerraba</div>
-                            </div>
-                            <div class="ml-auto font-bold text-red-400">-$360</div>
+                        <div class="flex gap-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
                         </div>
-                        
-                        <div class="flex items-center gap-4 p-3 bg-orange-500/10 rounded-lg border border-orange-500/20">
-                            <i data-lucide="users" class="w-8 h-8 text-orange-400"></i>
-                            <div>
-                                <div class="font-semibold text-orange-200">Doble booking</div>
-                                <div class="text-sm text-orange-400">Carlos atiende a 2 clientes a las 3:00pm</div>
+                        <span class="ml-2 text-sm text-slate-500 font-medium tracking-wider uppercase">Panel de Pérdidas — Esta Semana</span>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="metric-highlight flex items-center gap-4 p-4 rounded-xl">
+                            <div class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="phone-missed" class="w-6 h-6 text-red-400"></i>
                             </div>
-                            <div class="ml-auto font-bold text-orange-400">-$90</div>
+                            <div class="flex-1">
+                                <div class="font-semibold text-red-200">8 llamadas fuera de horario</div>
+                                <div class="text-sm text-red-400/80">Mientras cerraba. Clientes que no volvieron a llamar.</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-bold text-red-400 text-xl">-$360</div>
+                                <div class="text-xs text-red-400/60">esta semana</div>
+                            </div>
                         </div>
 
-                        <div class="flex items-center gap-4 p-3 bg-slate-700/50 rounded-lg border border-slate-600 opacity-60">
-                            <i data-lucide="clock" class="w-8 h-8 text-slate-400"></i>
-                            <div>
-                                <div class="font-semibold text-slate-300">3 horas ociosas</div>
-                                <div class="text-sm text-slate-500">Especialista esperando por no-show</div>
+                        <div class="metric-highlight flex items-center gap-4 p-4 rounded-xl">
+                            <div class="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="user-x" class="w-6 h-6 text-orange-400"></i>
                             </div>
-                            <div class="ml-auto font-bold text-slate-500">-$36</div>
+                            <div class="flex-1">
+                                <div class="font-semibold text-orange-200">5 no-shows confirmados</div>
+                                <div class="text-sm text-orange-400/80">Especialistas ociosos. Citas que no se rellenaron.</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-bold text-orange-400 text-xl">-$225</div>
+                                <div class="text-xs text-orange-400/60">irrecuperable</div>
+                            </div>
+                        </div>
+
+                        <div class="metric-highlight flex items-center gap-4 p-4 rounded-xl">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="git-compare" class="w-6 h-6 text-amber-400"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="font-semibold text-amber-200">Doble booking — Carlos</div>
+                                <div class="text-sm text-amber-400/80">Dos clientes a las 3:00pm. Uno se fue molesto.</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-bold text-amber-400 text-xl">-$90</div>
+                                <div class="text-xs text-amber-400/60">+ reputación</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 p-4 rounded-xl bg-slate-800/50 border border-slate-700/50 opacity-50">
+                            <div class="w-12 h-12 rounded-xl bg-slate-700 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="clock" class="w-6 h-6 text-slate-500"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="font-semibold text-slate-400">3 horas ociosas acumuladas</div>
+                                <div class="text-sm text-slate-600">Huecos entre citas que nadie rellenó</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-bold text-slate-500 text-xl">-$36</div>
+                                <div class="text-xs text-slate-600">y contando...</div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="mt-6 pt-6 border-t border-aura-gold/20">
-                        <div class="flex justify-between items-center text-lg font-bold">
-                            <span class="text-slate-300">Total esta semana:</span>
-                            <span class="text-red-400 text-2xl">-$486</span>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-400 font-medium">Total visible esta semana:</span>
+                            <span class="text-red-400 text-3xl font-bold">-$711</span>
                         </div>
+                        <p class="text-xs text-slate-600 mt-2 text-right">*Esto es solo lo que usted ve. Hay más debajo de la superficie.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓN: Aura -->
+    <!-- SECCIÓN: Datos Ocultos (El Gancho) -->
+    <section id="analisis" class="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-aura-gold rounded-full blur-[150px]"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full badge-premium text-sm font-semibold mb-6">
+                    <i data-lucide="eye-off" class="w-4 h-4"></i>
+                    Lo que no se mide, no se mejora
+                </div>
+                <h2 class="serif text-4xl md:text-5xl font-bold mb-6 text-white">
+                    Hay <span class="gradient-text">3 fugas de dinero</span> que casi nadie detecta
+                </h2>
+                <p class="text-lg text-slate-400 leading-relaxed">
+                    La mayoría de los salones solo rastrean lo obvio. Los números reales están en los datos que nadie revisa.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="stat-card rounded-2xl p-8 text-center group hover:border-aura-gold/40 transition-all duration-300">
+                    <div class="w-16 h-16 rounded-2xl bg-red-500/10 flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
+                        <i data-lucide="user-x" class="w-8 h-8 text-red-400"></i>
+                    </div>
+                    <div class="text-4xl font-bold text-white mb-2">No-Shows</div>
+                    <div class="text-aura-gold text-lg font-semibold mb-3">La fuga #1</div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        El 25-35% de las citas no se cumplen. Sin recordatorios inteligentes ni relleno automático de huecos.
+                    </p>
+                    <div class="mt-4 pt-4 border-t border-aura-gold/10">
+                        <span class="text-xs text-slate-500 uppercase tracking-wider">Impacto típico</span>
+                        <div class="text-2xl font-bold text-red-400 mt-1">$1,500–$3,000<span class="text-sm font-normal text-slate-500">/mes</span></div>
+                    </div>
+                </div>
+
+                <div class="stat-card rounded-2xl p-8 text-center group hover:border-aura-gold/40 transition-all duration-300">
+                    <div class="w-16 h-16 rounded-2xl bg-orange-500/10 flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
+                        <i data-lucide="phone-off" class="w-8 h-8 text-orange-400"></i>
+                    </div>
+                    <div class="text-4xl font-bold text-white mb-2">Llamadas</div>
+                    <div class="text-aura-gold text-lg font-semibold mb-3">La fuga #2</div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        60%+ de las llamadas ocurren fuera de horario. Cada una no contestada es un cliente que llama a la competencia.
+                    </p>
+                    <div class="mt-4 pt-4 border-t border-aura-gold/10">
+                        <span class="text-xs text-slate-500 uppercase tracking-wider">Impacto típico</span>
+                        <div class="text-2xl font-bold text-orange-400 mt-1">$400–$900<span class="text-sm font-normal text-slate-500">/mes</span></div>
+                    </div>
+                </div>
+
+                <div class="stat-card rounded-2xl p-8 text-center group hover:border-aura-gold/40 transition-all duration-300">
+                    <div class="w-16 h-16 rounded-2xl bg-amber-500/10 flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
+                        <i data-lucide="ban" class="w-8 h-8 text-amber-400"></i>
+                    </div>
+                    <div class="text-4xl font-bold text-white mb-2">Huecos</div>
+                    <div class="text-aura-gold text-lg font-semibold mb-3">La fuga #3</div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Cancelaciones last-minute que nadie rellena. Huecos de 30-45 min entre citas que se acumulan todo el día.
+                    </p>
+                    <div class="mt-4 pt-4 border-t border-aura-gold/10">
+                        <span class="text-xs text-slate-500 uppercase tracking-wider">Impacto típico</span>
+                        <div class="text-2xl font-bold text-amber-400 mt-1">$300–$700<span class="text-sm font-normal text-slate-500">/mes</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Análisis -->
+            <div class="max-w-2xl mx-auto glass-card-premium rounded-2xl p-8 text-center">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <i data-lucide="pie-chart" class="w-6 h-6 text-aura-gold"></i>
+                    <span class="text-aura-gold font-semibold">Análisis Personalizado Gratuito</span>
+                </div>
+                <p class="text-slate-400 mb-6">
+                    Le enviamos un reporte completo con los números reales de su salón: 
+                    cuánto pierde, por qué, y exactamente cuánto recuperaría con AuraSync.
+                </p>
+                <a href="https://wa.me/593995430859?text=Hola%20AuraSync,%20quiero%20mi%20análisis%20personalizado%20de%20pérdidas" 
+                   target="_blank"
+                   class="inline-flex items-center gap-2 gold-gradient gold-gradient-hover text-aura-dark px-8 py-4 rounded-xl text-base font-bold transition-all duration-300">
+                    <i data-lucide="clipboard-list" class="w-5 h-5"></i>
+                    Solicitar Mi Análisis Gratuito
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: Aura (La Solución) -->
     <section id="solucion" class="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-20">
-            <div class="absolute -top-24 -right-24 w-96 h-96 bg-aura-purple rounded-full blur-3xl"></div>
-            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-aura-gold rounded-full blur-3xl"></div>
+        <div class="absolute inset-0 opacity-15">
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-aura-purple rounded-full blur-[120px]"></div>
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-aura-gold rounded-full blur-[120px]"></div>
         </div>
 
         <div class="max-w-7xl mx-auto relative z-10">
             <div class="text-center max-w-3xl mx-auto mb-16">
-                <!-- Logo completo aquí -->
-                <img src="./aurasync-logo.jpg" alt="AuraSync - El Estándar de Oro Operativo" class="w-full max-w-md mx-auto mb-8 rounded-lg shadow-2xl logo-glow">
-                <h2 class="serif text-4xl md:text-6xl font-bold mb-6 text-white">Conozca a <span class="text-aura-gold">Aura</span></h2>
-                <p class="text-xl text-slate-300 leading-relaxed">
-                    La única coordinadora que contesta WhatsApp las 24 horas, valida disponibilidad en tiempo real y vende sus servicios como si fuera la dueña.
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full badge-premium text-sm font-semibold mb-6">
+                    <i data-lucide="crown" class="w-4 h-4"></i>
+                    La única coordinadora que nunca descansa
+                </div>
+                <h2 class="serif text-4xl md:text-6xl font-bold mb-6 text-white">
+                    Conozca a <span class="gradient-text">Aura</span>
+                </h2>
+                <p class="text-xl text-slate-400 leading-relaxed">
+                    Inteligencia artificial operativa que contesta WhatsApp las 24 horas, 
+                    valida disponibilidad en tiempo real y vende sus servicios como si fuera la dueña.
                 </p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8 mb-16">
-                <div class="glass-card rounded-2xl p-8 hover:border-aura-gold/40 transition">
-                    <div class="w-12 h-12 gold-gradient rounded-xl flex items-center justify-center mb-6">
-                        <i data-lucide="message-circle" class="w-6 h-6 text-aura-dark"></i>
+                <div class="glass-card-premium rounded-2xl p-8 hover:border-aura-gold/40 transition-all duration-300 group">
+                    <div class="w-14 h-14 gold-gradient rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="message-circle" class="w-7 h-7 text-aura-dark"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3 text-white">Atención Instantánea</h3>
-                    <p class="text-slate-300">Responde en segundos. Nunca está ocupada. Nunca se distrae con Instagram mientras atiende.</p>
+                    <p class="text-slate-400 leading-relaxed">
+                        Responde en segundos. Nunca está ocupada. Nunca se distrae. 
+                        Su cliente escribe a las 11pm y recibe confirmación inmediata.
+                    </p>
                 </div>
 
-                <div class="glass-card rounded-2xl p-8 hover:border-aura-gold/40 transition">
-                    <div class="w-12 h-12 gold-gradient rounded-xl flex items-center justify-center mb-6">
-                        <i data-lucide="brain" class="w-6 h-6 text-aura-dark"></i>
+                <div class="glass-card-premium rounded-2xl p-8 hover:border-aura-gold/40 transition-all duration-300 group">
+                    <div class="w-14 h-14 gold-gradient rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="brain-circuit" class="w-7 h-7 text-aura-dark"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3 text-white">Vende con Expertise</h3>
-                    <p class="text-slate-300">Sabe que Elena es experta en nail art y Carlos en colorimetría. Recomienda al especialista correcto.</p>
+                    <p class="text-slate-400 leading-relaxed">
+                        Sabe que Elena es experta en nail art y Carlos en colorimetría. 
+                        Recomienda al especialista correcto y sugiere upsells naturales.
+                    </p>
                 </div>
 
-                <div class="glass-card rounded-2xl p-8 hover:border-aura-gold/40 transition">
-                    <div class="w-12 h-12 gold-gradient rounded-xl flex items-center justify-center mb-6">
-                        <i data-lucide="shield-check" class="w-6 h-6 text-aura-dark"></i>
+                <div class="glass-card-premium rounded-2xl p-8 hover:border-aura-gold/40 transition-all duration-300 group">
+                    <div class="w-14 h-14 gold-gradient rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="shield-check" class="w-7 h-7 text-aura-dark"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Cero Errores</h3>
-                    <p class="text-slate-300">Verifica disponibilidad antes de confirmar. No hay doble-booking, no hay "déjeme revisar".</p>
+                    <h3 class="text-xl font-bold mb-3 text-white">Cero Errores Operativos</h3>
+                    <p class="text-slate-400 leading-relaxed">
+                        Verifica disponibilidad antes de confirmar. No hay doble-booking. 
+                        No hay "déjeme revisar". No hay citas olvidadas.
+                    </p>
                 </div>
             </div>
 
-            <!-- Chat Demo con isologo -->
-            <div class="max-w-md mx-auto bg-slate-800 rounded-3xl overflow-hidden shadow-2xl border border-aura-gold/20">
-                <div class="bg-slate-900 px-4 py-3 flex items-center gap-3 border-b border-aura-gold/20">
-                    <img src="./aurasync-isotipo.png" alt="Aura" class="w-10 h-10 rounded-full bg-transparent">
+            <!-- Chat Demo -->
+            <div class="max-w-lg mx-auto bg-aura-surface rounded-3xl overflow-hidden shadow-2xl border border-aura-gold/20">
+                <div class="bg-aura-darker px-5 py-4 flex items-center gap-3 border-b border-aura-gold/20">
+                    <img src="https://aurasync.digital/aurasync-isotipo.png" alt="Aura" class="w-10 h-10 rounded-full bg-transparent">
                     <div>
                         <div class="font-semibold text-white">AuraSync</div>
-                        <div class="text-xs text-green-400 flex items-center gap-1">
-                            <span class="w-2 h-2 bg-green-500 rounded-full"></span>
-                            En línea
+                        <div class="text-xs text-green-400 flex items-center gap-1.5">
+                            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                            En línea — Responde al instante
                         </div>
                     </div>
+                    <div class="ml-auto">
+                        <span class="text-xs text-aura-gold/60 border border-aura-gold/20 px-2 py-1 rounded-full">AI</span>
+                    </div>
                 </div>
-                <div class="p-4 flex flex-col bg-[#0f172a] h-96 overflow-y-auto space-y-3">
+                <div class="p-5 flex flex-col bg-aura-dark h-[420px] overflow-y-auto space-y-3" id="chat-container">
                     <div class="chat-bubble chat-client">
                         Hola, quiero agendar manicure para mañana a las 3pm
                     </div>
                     <div class="chat-bubble chat-aura">
-                        Perfecto, para mañana a las 15:00 tengo a Elena, nuestra nail artist experta en diseños personalizados que duran semanas perfectas. ¿Te gustaría con ella?
+                        <span class="text-aura-goldLight font-medium">Perfecto.</span> Para mañana a las 15:00 tengo a <strong>Elena</strong>, nuestra nail artist experta en diseños personalizados que duran semanas perfectas. ¿Te gustaría con ella?
                     </div>
                     <div class="chat-bubble chat-client">
-                        Sí, suena bien
+                        Sí, suena bien. ¿Cuánto cuesta?
                     </div>
                     <div class="chat-bubble chat-aura">
-                        Listo, te queda agendado para mañana a las 15:00 con Elena para Manicura. ¿Confirmamos? ✅
+                        Manicure con Elena: <strong class="text-aura-goldLight">$45</strong>.<br><br>
+                        Te sugiero agregar <span class="text-aura-goldLight">spa de cutículas ($12)</span> — Elena lo hace excepcional y tus uñas durarán 3 semanas impecables. ¿Lo incluimos?
+                    </div>
+                    <div class="chat-bubble chat-client">
+                        Sí, perfecto
+                    </div>
+                    <div class="chat-bubble chat-aura">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-green-400"></i>
+                            <span class="font-semibold">Agendado con éxito</span>
+                        </div>
+                        Mañana 15:00 con Elena:<br>
+                        • Manicure + Spa de cutículas<br>
+                        • Total: <strong class="text-aura-goldLight">$57</strong><br><br>
+                        Te enviaré un recordatorio 2 horas antes. ¿Algo más en lo que pueda ayudarte? ✨
+                    </div>
+                </div>
+                <div class="px-5 py-3 bg-aura-darker border-t border-aura-gold/10 flex items-center gap-3">
+                    <div class="flex-1 px-4 py-2.5 rounded-full bg-aura-surface border border-aura-gold/10 text-sm text-slate-500">
+                        Aura está escribiendo...
+                    </div>
+                    <div class="w-8 h-8 rounded-full gold-gradient flex items-center justify-center">
+                        <i data-lucide="send" class="w-4 h-4 text-aura-dark"></i>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Final -->
-    <section id="cta" class="py-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center">
-        <div class="glass-card rounded-3xl p-8 md:p-12 max-w-2xl mx-auto border-2 border-aura-gold/30">
-            <img src="./aurasync-logo.jpg" alt="AuraSync" class="w-48 mx-auto mb-6 rounded-lg opacity-90">
-            
-            <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-8">
-                <div class="text-center">
-                    <div class="text-sm text-slate-400 mb-1">Setup inicial</div>
-                    <div class="text-4xl font-bold text-white">$1,900</div>
-                    <div class="text-xs text-slate-500">Un solo pago</div>
+    <!-- SECCIÓN: Cómo Funciona -->
+    <section id="como-funciona" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full badge-premium text-sm font-semibold mb-6">
+                <i data-lucide="settings-2" class="w-4 h-4"></i>
+                Implementación en 48 horas
+            </div>
+            <h2 class="serif text-4xl md:text-5xl font-bold mb-6 text-white">
+                De <span class="gradient-text">cero a operando</span> en 3 pasos
+            </h2>
+            <p class="text-lg text-slate-400">
+                Sin interrumpir su operación actual. Sin cambiar su calendario. Sin complicaciones técnicas.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="relative">
+                <div class="glass-card-premium rounded-2xl p-8 h-full">
+                    <div class="step-number w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-6">1</div>
+                    <div class="w-14 h-14 rounded-2xl bg-aura-blue/20 flex items-center justify-center mb-5">
+                        <i data-lucide="link" class="w-7 h-7 text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Conectamos Su Calendario</h3>
+                    <p class="text-slate-400 leading-relaxed mb-4">
+                        Google Calendar, Outlook, o el sistema que ya usa. Aura lee disponibilidad en tiempo real. 
+                        No necesita cambiar nada de lo que ya funciona.
+                    </p>
+                    <div class="flex items-center gap-2 text-xs text-slate-500">
+                        <i data-lucide="clock" class="w-3 h-3"></i>
+                        <span>Tiempo: 15 minutos</span>
+                    </div>
                 </div>
-                <div class="text-aura-gold text-4xl font-light hidden md:block">+</div>
-                <div class="text-center">
-                    <div class="text-sm text-slate-400 mb-1">Soporte mensual</div>
-                    <div class="text-4xl font-bold text-aura-gold">$379</div>
-                    <div class="text-xs text-slate-500">Cancela cuando quieras</div>
-                </div>
+                <div class="hidden md:block absolute top-1/2 -right-4 w-8 border-t-2 border-dashed border-aura-gold/30"></div>
             </div>
 
-            <a href="https://wa.me/593995430859?text=Hola%20AuraSync,%20quiero%20agendar%20una%20demo%20privada%20para%20mi%20salón" target="_blank" class="w-full gold-gradient text-aura-dark text-xl font-bold py-4 rounded-xl hover:shadow-lg hover:shadow-aura-gold/30 transition shadow-xl flex items-center justify-center gap-3 mb-4">
-                <i data-lucide="calendar" class="w-6 h-6"></i>
-                <span>Agendar Demo por WhatsApp</span>
-            </a>
+            <div class="relative">
+                <div class="glass-card-premium rounded-2xl p-8 h-full">
+                    <div class="step-number w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-6">2</div>
+                    <div class="w-14 h-14 rounded-2xl bg-aura-purple/20 flex items-center justify-center mb-5">
+                        <i data-lucide="list-checks" class="w-7 h-7 text-purple-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Configuramos Su Catálogo</h3>
+                    <p class="text-slate-400 leading-relaxed mb-4">
+                        Servicios, precios, duraciones, especialistas. Aura aprende quién hace qué mejor. 
+                        Configuramos upsells estratégicos para aumentar el ticket promedio.
+                    </p>
+                    <div class="flex items-center gap-2 text-xs text-slate-500">
+                        <i data-lucide="clock" class="w-3 h-3"></i>
+                        <span>Tiempo: 30 minutos</span>
+                    </div>
+                </div>
+                <div class="hidden md:block absolute top-1/2 -right-4 w-8 border-t-2 border-dashed border-aura-gold/30"></div>
+            </div>
 
-            <p class="text-sm text-slate-400">
-                O escriba directamente: <a href="https://wa.me/593995430859" target="_blank" class="text-aura-gold font-semibold hover:underline">+593 99 543 0859</a>
-            </p>
+            <div class="relative">
+                <div class="glass-card-premium rounded-2xl p-8 h-full">
+                    <div class="step-number w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-6">3</div>
+                    <div class="w-14 h-14 rounded-2xl bg-green-500/10 flex items-center justify-center mb-5">
+                        <i data-lucide="rocket" class="w-7 h-7 text-green-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Aura Empieza a Responder</h3>
+                    <p class="text-slate-400 leading-relaxed mb-4">
+                        En menos de 24 horas, Aura está atendiendo WhatsApp. Sus clientes agendan solos. 
+                        Usted solo recibe las notificaciones de citas confirmadas.
+                    </p>
+                    <div class="flex items-center gap-2 text-xs text-slate-500">
+                        <i data-lucide="clock" class="w-3 h-3"></i>
+                        <span>Tiempo: 24 horas</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="border-t border-aura-gold/20 py-12 px-4 text-center">
-        <img src="./aurasync-isotipo.png" alt="AuraSync" class="w-16 h-16 mx-auto mb-4 opacity-50">
-        <p class="text-aura-gold font-semibold text-lg">AuraSync</p>
-        <p class="text-slate-500 text-sm mt-2">El Estándar de Oro Operativo</p>
-        <p class="text-slate-600 text-xs mt-4">© 2026 AuraSync. Todos los derechos reservados.</p>
+    <!-- SECCIÓN: ROI y Comparativa -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-aura-gold rounded-full blur-[100px]"></div>
+        </div>
+
+        <div class="max-w-5xl mx-auto relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full badge-premium text-sm font-semibold mb-6">
+                    <i data-lucide="calculator" class="w-4 h-4"></i>
+                    La matemática es simple
+                </div>
+                <h2 class="serif text-4xl md:text-5xl font-bold mb-6 text-white">
+                    Un recepcionista cuesta más. <span class="gradient-text">Y hace menos.</span>
+                </h2>
+            </div>
+
+            <div class="glass-card-premium rounded-3xl overflow-hidden">
+                <div class="grid md:grid-cols-2">
+                    <!-- Columna: Recepcionista Humano -->
+                    <div class="p-8 md:p-10 border-b md:border-b-0 md:border-r border-aura-gold/10">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-slate-700 flex items-center justify-center">
+                                <i data-lucide="user" class="w-6 h-6 text-slate-400"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-300">Recepcionista Humano</h3>
+                                <p class="text-sm text-slate-500">El "estándar" tradicional</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="comparison-row flex items-center justify-between p-3 rounded-lg">
+                                <span class="text-slate-400">Salario mensual</span>
+                                <span class="font-semibold text-slate-300">$500 – $800</span>
+                            </div>
+                            <div class="comparison-row flex items-center justify-between p-3 rounded-lg">
+                                <span class="text-slate-400">Horario de atención</span>
+                                <span class="font-semibold text-red-400">8 horas / días hábiles</span>
+                            </div>
+                            <div class="comparison-row flex items-center justify-between p-3 rounded-lg">
+                                <span class="text-slate-400">Atiende WhatsApp</span>
+                                <span class="font-semibold text-red-400">❌ No</span>
+                            </div>
+                            <div class="comparison-row flex items-center justify-between p-3 rounded-lg">
+                                <span class="text-slate-400">Recordatorios automáticos</span>
+                                <span class="font-semibold text-red-400">❌ Manual</span>
+                            </div>
+                            <div class="comparison-row flex items-center justify-between p-3 rounded-lg">
+                                <span class="text-slate-400">Relleno de cancelaciones</span>
+                                <span class="font-semibold text-red-400">❌ No hace</span>
+                            </div>
+                            <div class="comparison-row flex items-center justify-between p-3 rounded-lg">
+                                <span class="text-slate-400">Upsell / Cross-sell</span>
+                                <span class="font-semibold text-red-400">❌ Inconsistente</span>
+                            </div>
+                            <div class="comparison-row flex items-center justify-between p-3 rounded-lg">
+                                <span class="text-slate-400">Vacaciones, enfermedad, renuncia</span>
+                                <span class="font-semibold text-red-400">❌ Sí, pasa</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-6 border-t border-slate-700">
+                            <div class="text-sm text-slate-500 mb-1">Costo real anual</div>
+                            <div class="text-3xl font-bold text-slate-400">$6,000 – $9,600</div>
+                            <div class="text-xs text-slate-600 mt-1">+ beneficios + capacitación + rotación</div>
+                        </div>
+                    </div>
+
+                    <!-- Columna: AuraSync -->
+                    <div class="p-8 md:p-10 bg-gradient-to-br from-aura-gold/5 to-transparent">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-12 h-12 rounded-xl gold-gradient flex items-center justify-center">
+                                <i data-lucide="sparkles" class="w-6 h-6 text-aura-dark"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">AuraSync</h3>
+                                <p class="text-sm text-aura-gold">El Estándar de Oro</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="comparison-row flex items-center justify-between p-3 rounded-lg">
+                                <span class="text-slate-400">Inversión mensual</span>
+                                <span class="font-bold text-aura-gold text-lg">$379</span>
+                            </div>
+                            <div class="comparison-row flex items-center justify-between p-3 rounded-lg">
+                                <span class="text-slate-400">Horario de atención</span>
+                                <span class="font-bold text-green-400">24/7 / 365 días</span>
+                            </div>
+                            <div class="comparison-row flex items-center justify-between p-3 rounded-lg">
+                                <span class="text-slate-400">Atiende WhatsApp</span>
+                                <span class="font-bold text-green-400">✅ Automático</span>
+                            </div>
+                            <div class="comparison-row flex items-center justify-between p-3 rounded-lg">
+                                <span class="text-slate-400">Recordatorios automáticos</span>
+                                <span class="font-bold text-green-400">✅ IA inteligente</span>
+                            </div>
+                            <div class="comparison-row flex items-center justify-between p-3 rounded-lg">
+                                <span class="text-slate-400">Relleno de cancelaciones</span>
+                                <span class="font-bold text-green-400">✅ Automático</span>
+                            </div>
+                            <div class="comparison-row flex items-center justify-between p-3 rounded-lg">
+                                <span class="text-slate-400">Upsell / Cross-sell</span>
+                                <span class="font-bold text-green-400">✅ Estratégico</span>
+                            </div>
+                            <div class="comparison-row flex items-center justify-between p-3 rounded-lg">
+                                <span class="text-slate-400">Vacaciones, enfermedad, renuncia</span>
+                                <span class="font-bold text-green-400">✅ Nunca</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-6 border-t border-aura-gold/20">
+                            <div class="text-sm text-slate-500 mb-1">Costo real anual</div>
+                            <div class="text-3xl font-bold text-aura-gold">$4,548</div>
+                            <div class="text-xs text-aura-gold/60 mt-1">Setup único: $1,900 (amortizado en 2 meses)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Banner de ahorro -->
+                <div class="px-8 py-6 bg-gradient-to-r from-aura-gold/10 via-aura-gold/5 to-transparent border-t border-aura-gold/20">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="trending-up" class="w-6 h-6 text-aura-gold"></i>
+                            <span class="text-white font-medium">Ahorro anual estimado vs. recepcionista:</span>
+                        </div>
+                        <div class="text-2xl md:text-3xl font-bold gradient-text">$1,500 – $4,000+ / año</div>
+                    </div>
+                    <p class="text-sm text-slate-500 mt-2 md:text-right">
+                        *Sin contar el dinero recuperado por no-shows evitados y upsells generados
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: Precios y CTA -->
+    <section id="cta" class="py-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center">
+        <div class="glass-card-premium rounded-3xl p-8 md:p-12 border-2 border-aura-gold/30 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-aura-gold/5 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-64 h-64 bg-aura-blue/5 rounded-full blur-3xl"></div>
+
+            <div class="relative z-10">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full badge-premium text-sm font-semibold mb-8">
+                    <i data-lucide="gem" class="w-4 h-4"></i>
+                    Inversión que se paga sola
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-8">
+                    <div class="text-center p-6 rounded-2xl bg-aura-surface/50 border border-aura-gold/10">
+                        <div class="text-sm text-slate-400 mb-2 uppercase tracking-wider">Setup Inicial</div>
+                        <div class="text-5xl font-bold text-white">$1,900</div>
+                        <div class="text-xs text-slate-500 mt-2">Un solo pago</div>
+                        <div class="text-xs text-aura-gold mt-1">Incluye configuración completa + capacitación</div>
+                    </div>
+
+                    <div class="text-aura-gold text-4xl font-light hidden md:block">+</div>
+
+                    <div class="text-center p-6 rounded-2xl bg-gradient-to-br from-aura-gold/10 to-transparent border border-aura-gold/20">
+                        <div class="text-sm text-aura-gold mb-2 uppercase tracking-wider">Soporte Mensual</div>
+                        <div class="text-5xl font-bold text-aura-gold">$379</div>
+                        <div class="text-xs text-slate-500 mt-2">Cancela cuando quieras</div>
+                        <div class="text-xs text-aura-gold/60 mt-1">Incluye soporte + actualizaciones + reportes</div>
+                    </div>
+                </div>
+
+                <!-- Contexto de precio -->
+                <div class="max-w-lg mx-auto mb-8 p-4 rounded-xl bg-aura-surface/50 border border-aura-gold/10">
+                    <p class="text-slate-400 text-sm">
+                        <span class="text-aura-gold font-semibold">Contexto:</span> Un recepcionista cuesta $500–$800/mes, 
+                        trabaja 8 horas, toma vacaciones y se distrae. AuraSync cuesta $379 y nunca duerme.
+                    </p>
+                </div>
+
+                <a href="https://wa.me/593995430859?text=Hola%20AuraSync,%20quiero%20agendar%20una%20demo%20privada%20para%20mi%20salón" 
+                   target="_blank" 
+                   class="inline-flex items-center justify-center gap-3 w-full md:w-auto gold-gradient gold-gradient-hover text-aura-dark text-xl font-bold py-5 px-10 rounded-xl transition-all duration-300 shadow-xl shadow-aura-gold/20">
+                    <i data-lucide="calendar-check" class="w-6 h-6"></i>
+                    <span>Agendar Demo Privada por WhatsApp</span>
+                </a>
+
+                <p class="text-sm text-slate-500 mt-6">
+                    O escriba directamente: 
+                    <a href="https://wa.me/593995430859" target="_blank" class="text-aura-gold font-semibold hover:underline">+593 99 543 0859</a>
+                </p>
+
+                <div class="flex items-center justify-center gap-6 mt-6 text-xs text-slate-600">
+                    <span class="flex items-center gap-1.5">
+                        <i data-lucide="shield-check" class="w-3 h-3"></i>
+                        Sin contrato de permanencia
+                    </span>
+                    <span class="flex items-center gap-1.5">
+                        <i data-lucide="refresh-cw" class="w-3 h-3"></i>
+                        Cancela cuando quieras
+                    </span>
+                    <span class="flex items-center gap-1.5">
+                        <i data-lucide="headphones" class="w-3 h-3"></i>
+                        Soporte humano incluido
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Premium -->
+    <footer class="border-t border-aura-gold/20 py-16 px-4">
+        <div class="max-w-7xl mx-auto text-center">
+            <img src="https://aurasync.digital/aurasync-isotipo.png" alt="AuraSync" class="w-16 h-16 mx-auto mb-6 opacity-60">
+            <p class="text-aura-gold font-semibold text-xl serif tracking-wide">AuraSync</p>
+            <p class="text-slate-500 text-sm mt-2 tracking-widest uppercase">El Estándar de Oro Operativo</p>
+            <div class="flex items-center justify-center gap-6 mt-6 text-sm text-slate-600">
+                <a href="https://wa.me/593995430859" target="_blank" class="hover:text-aura-gold transition flex items-center gap-2">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    WhatsApp
+                </a>
+                <span class="text-slate-700">|</span>
+                <span class="flex items-center gap-2">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                    hola@aurasync.ec
+                </span>
+            </div>
+            <p class="text-slate-700 text-xs mt-8">© 2026 AuraSync. Todos los derechos reservados.</p>
+        </div>
     </footer>
 
     <script>
         lucide.createIcons();
-        
-        function calcularPerdida() {
-            const ticket = parseInt(document.getElementById('ticket').value) || 45;
-            const llamadas = parseInt(document.getElementById('llamadas').value) || 16;
-            const conversion = parseFloat(document.getElementById('conversion').value) || 0.4;
-            const semanasMes = 4.3;
-            const perdida = Math.round(llamadas * conversion * ticket * semanasMes);
-            document.getElementById('perdida-mensual').textContent = '$' + perdida.toLocaleString();
+
+        function syncNoShow(val) {
+            document.getElementById('noshow-display').textContent = val + '%';
         }
+
+        function calcularTeaser() {
+            const ticket = parseInt(document.getElementById('ticket').value) || 45;
+            const citas = parseInt(document.getElementById('citas').value) || 60;
+            const noshowRate = parseInt(document.getElementById('noshow-slider').value) || 25;
+            const semanasMes = 4.3;
+
+            // Calcular no-shows
+            const noShowsPorSemana = Math.round(citas * (noshowRate / 100));
+            const perdidaNoShow = Math.round(noShowsPorSemana * ticket * semanasMes);
+
+            // Llamadas perdidas (estimado: 30% de las citas que no son por WhatsApp)
+            const llamadasPerdidas = Math.round(citas * 0.15);
+            const perdidaLlamadas = Math.round(llamadasPerdidas * ticket * 0.35 * semanasMes);
+
+            // Errores de agenda (estimado conservador)
+            const perdidaErrores = Math.round(citas * 0.05 * ticket * semanasMes);
+
+            // Total visible (solo no-shows + llamadas para el teaser)
+            const totalVisible = perdidaNoShow + perdidaLlamadas;
+
+            document.getElementById('perdida-mensual').textContent = '$' + totalVisible.toLocaleString();
+
+            // Actualizar datos revelados
+            document.getElementById('noshow-loss').textContent = 'No-shows (' + noshowRate + '%): $' + perdidaNoShow.toLocaleString() + '/mes';
+            document.getElementById('llamada-loss').textContent = 'Llamadas perdidas: $' + perdidaLlamadas.toLocaleString() + '/mes';
+            document.getElementById('error-loss').textContent = 'Errores de agenda: ~$' + perdidaErrores.toLocaleString() + '/mes';
+
+            // Mostrar datos ocultos después de interacción
+            const hiddenSection = document.getElementById('hidden-losses');
+            if (!hiddenSection.classList.contains('visible')) {
+                setTimeout(() => {
+                    hiddenSection.classList.add('visible');
+                }, 800);
+            }
+        }
+
+        // Inicializar
+        calcularTeaser();
     </script>
 </body>
 </html>
