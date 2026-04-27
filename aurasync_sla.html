@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLA AuraSync | Acuerdo de Nivel de Servicio</title>
+    <link rel="icon" type="image/png" href="./aurasync-isotipo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #ffffff; color: #1a1a2e; }
+        .page-break { page-break-after: always; }
+        @media print {
+            body { background: white; }
+            .no-print { display: none; }
+            .page-break { page-break-after: always; }
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #fef9e7 0%, #fcf3cf 100%);
+            border-left: 4px solid #c9a84c;
+        }
+        .warning-box {
+            background: linear-gradient(135deg, #fdf2f2 0%, #fee2e2 100%);
+            border-left: 4px solid #dc2626;
+        }
+        .success-box {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 4px solid #16a34a;
+        }
+        .section-title {
+            color: #1e3a8a;
+            border-bottom: 2px solid #c9a84c;
+            padding-bottom: 0.5rem;
+        }
+        table { border-collapse: collapse; width: 100%; }
+        th { background: #1e3a8a; color: white; padding: 12px; text-align: left; font-weight: 600; }
+        td { padding: 12px; border-bottom: 1px solid #e5e7eb; }
+        tr:nth-child(even) { background: #f9fafb; }
+        .signature-line {
+            border-top: 1px solid #1a1a2e;
+            margin-top: 3rem;
+            padding-top: 0.5rem;
+        }
+    </style>
+<base target="_blank">
+</head>
+<body class="min-h-screen">
+
+    <!-- Botón imprimir -->
+    <div class="no-print fixed top-4 right-4 z-50">
+        <button onclick="window.print()" class="bg-blue-900 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:bg-blue-800 transition flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            Imprimir / Guardar PDF
+        </button>
+    </div>
+
+    <div class="max-w-4xl mx-auto p-8 md:p-12">
+
+        <!-- HEADER -->
+        <div class="text-center mb-10">
+            <div class="flex items-center justify-center gap-3 mb-4">
+                <img src="./aurasync-isotipo.png" alt="AuraSync" class="w-12 h-12">
+                <div class="text-left">
+                    <h1 class="text-2xl font-bold text-blue-900">AuraSync</h1>
+                    <p class="text-xs text-amber-600 tracking-widest uppercase">El Estándar de Oro Operativo</p>
+                </div>
+            </div>
+            <h2 class="text-3xl font-bold text-blue-900 mb-2">Acuerdo de Nivel de Servicio (SLA)</h2>
+            <p class="text-gray-500">Documento de compromisos, métricas y garantías del servicio</p>
+            <div class="mt-4 inline-block px-4 py-2 bg-amber-50 border border-amber-200 rounded-lg text-sm text-amber-800">
+                <strong>Versión 1.0</strong> | Vigente desde la fecha de firma del contrato de servicio
+            </div>
+        </div>
+
+        <!-- 1. DEFINICIONES -->
+        <section class="mb-10">
+            <h3 class="section-title text-xl font-bold mb-4">1. Definiciones</h3>
+            <div class="grid md:grid-cols-2 gap-4 text-sm">
+                <div class="p-4 bg-gray-50 rounded-lg">
+                    <strong class="text-blue-900">"Tiempo de Respuesta"</strong>
+                    <p class="text-gray-600 mt-1">Tiempo transcurrido desde que el cliente envía un mensaje por WhatsApp hasta que Aura genera una respuesta automática.</p>
+                </div>
+                <div class="p-4 bg-gray-50 rounded-lg">
+                    <strong class="text-blue-900">"Tiempo de Resolución"</strong>
+                    <p class="text-gray-600 mt-1">Tiempo para completar una acción solicitada (agendar, modificar o cancelar una cita) desde la primera interacción.</p>
+                </div>
+                <div class="p-4 bg-gray-50 rounded-lg">
+                    <strong class="text-blue-900">"Uptime"</strong>
+                    <p class="text-gray-600 mt-1">Porcentaje de tiempo mensual en que el servicio de AuraSync está operativo y accesible, excluyendo mantenimientos programados.</p>
+                </div>
+                <div class="p-4 bg-gray-50 rounded-lg">
+                    <strong class="text-blue-900">"Mantenimiento Programado"</strong>
+                    <p class="text-gray-600 mt-1">Ventanas de mantenimiento programadas con al menos 48 horas de anticipación, preferentemente en horarios de baja demanda.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. COMPROMISOS DEL SERVICIO -->
+        <section class="mb-10">
+            <h3 class="section-title text-xl font-bold mb-4">2. Compromisos del Servicio</h3>
+
+            <table class="mb-6">
+                <thead>
+                    <tr>
+                        <th class="rounded-tl-lg">Métrica</th>
+                        <th>Compromiso</th>
+                        <th>Medición</th>
+                        <th class="rounded-tr-lg">Penalidad si no se cumple</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Tiempo de Respuesta</strong></td>
+                        <td>≤ 90 segundos en horario comercial<br><span class="text-xs text-gray-500">(Lun-Sab 7:00-21:00)</span></td>
+                        <td>Promedio mensual</td>
+                        <td><span class="text-green-700 font-semibold">10% descuento siguiente mes</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tiempo de Resolución</strong></td>
+                        <td>Agendamiento completo en ≤ 3 minutos</td>
+                        <td>Promedio mensual</td>
+                        <td><span class="text-green-700 font-semibold">10% descuento siguiente mes</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Uptime Mensual</strong></td>
+                        <td>≥ 99.0%</td>
+                        <td>Horas operativas / horas del mes</td>
+                        <td><span class="text-green-700 font-semibold">Crédito proporcional por tiempo fuera</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Precisión de Agendamiento</strong></td>
+                        <td>≥ 97% sin errores de doble-booking</td>
+                        <td>Citas correctas / total de citas</td>
+                        <td><span class="text-green-700 font-semibold">Reconfiguración gratuita + 15% descuento</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Soporte Técnico Humano</strong></td>
+                        <td>Respuesta en ≤ 4 horas hábiles</td>
+                        <td>Tickets de soporte</td>
+                        <td><span class="text-green-700 font-semibold">Escalación prioritaria directa</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight-box p-4 rounded-lg text-sm">
+                <strong class="text-amber-800">💡 Nota importante:</strong> Las penalidades son <strong>acumulables hasta un máximo del 50% del valor mensual</strong>. No aplican en casos de fuerza mayor (fallas de internet del cliente, caída de servidores de WhatsApp, catástrofes naturales).
+            </div>
+        </section>
+
+        <!-- 3. QUÉ CUBRE Y QUÉ NO -->
+        <section class="mb-10">
+            <h3 class="section-title text-xl font-bold mb-4">3. Alcance del Servicio</h3>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="success-box p-5 rounded-lg">
+                    <h4 class="font-bold text-green-800 mb-3 flex items-center gap-2">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        Incluido en el servicio
+                    </h4>
+                    <ul class="text-sm text-green-700 space-y-2">
+                        <li>• Respuesta automática por WhatsApp 24/7</li>
+                        <li>• Validación de disponibilidad en tiempo real</li>
+                        <li>• Recordatorios automáticos de citas</li>
+                        <li>• Reagendamiento por solicitud del cliente</li>
+                        <li>• Reporte mensual de métricas (citas, no-shows, ingresos)</li>
+                        <li>• Soporte técnico por WhatsApp y email</li>
+                        <li>• Actualizaciones del sistema sin costo adicional</li>
+                        <li>• Capacitación inicial del personal (2 sesiones)</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box p-5 rounded-lg">
+                    <h4 class="font-bold text-red-800 mb-3 flex items-center gap-2">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        No incluido / Limitaciones
+                    </h4>
+                    <ul class="text-sm text-red-700 space-y-2">
+                        <li>• Modificaciones al catálogo de servicios más de 2 veces al mes</li>
+                        <li>• Integración con sistemas de terceros no previamente acordados</li>
+                        <li>• Atención de reclamos de clientes finales (el salón retiene esa responsabilidad)</li>
+                        <li>• Gestión de pagos o procesamiento de tarjetas</li>
+                        <li>• Fallas causadas por cambios no autorizados en la configuración del cliente</li>
+                        <li>• Pérdida de datos por no respaldar el calendario propio del cliente</li>
+                        <li>• Uso del servicio para fines distintos a los acordados en el contrato</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. RESPONSABILIDADES -->
+        <section class="mb-10">
+            <h3 class="section-title text-xl font-bold mb-4">4. Responsabilidades de las Partes</h3>
+
+            <div class="space-y-4">
+                <div class="border border-gray-200 rounded-lg p-5">
+                    <h4 class="font-bold text-blue-900 mb-3">AuraSync (Proveedor)</h4>
+                    <ul class="text-sm text-gray-700 space-y-1.5">
+                        <li>• Mantener la infraestructura tecnológica operativa según los uptime comprometidos</li>
+                        <li>• Notificar con 48 horas de anticipación cualquier mantenimiento programado</li>
+                        <li>• Proveer reportes mensuales de desempeño antes del día 5 de cada mes</li>
+                        <li>• Responder tickets de soporte dentro del tiempo comprometido</li>
+                        <li>• Mantener la confidencialidad de los datos del cliente y sus clientes finales</li>
+                        <li>• Realizar backups diarios de la configuración del sistema</li>
+                    </ul>
+                </div>
+
+                <div class="border border-gray-200 rounded-lg p-5">
+                    <h4 class="font-bold text-blue-900 mb-3">Cliente (Salón / Cadena)</h4>
+                    <ul class="text-sm text-gray-700 space-y-1.5">
+                        <li>• Mantener actualizado el calendario de disponibilidad en tiempo real</li>
+                        <li>• Notificar cambios en el catálogo de servicios con al menos 5 días de anticipación</li>
+                        <li>• Designar un responsable de comunicación para temas operativos</li>
+                        <li>• No realizar cambios directos en la configuración de Aura sin autorización</li>
+                        <li>• Proporcionar acceso a las plataformas necesarias (Google Calendar, etc.)</li>
+                        <li>• Pagar la mensualidad dentro de los primeros 5 días de cada mes</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. GARANTÍA DE CUMPLIMIENTO -->
+        <section class="mb-10">
+            <h3 class="section-title text-xl font-bold mb-4">5. Garantía de Cumplimiento — Primeros 30 Días</h3>
+
+            <div class="highlight-box p-6 rounded-lg">
+                <p class="text-gray-800 mb-4">
+                    AuraSync ofrece una <strong>garantía de satisfacción condicionada</strong> durante el primer mes de servicio:
+                </p>
+                <ol class="text-sm text-gray-700 space-y-2 list-decimal list-inside">
+                    <li>Si en los primeros 30 días el cliente demuestra que Aura no cumple con al menos 3 de las 5 métricas del SLA, el cliente puede solicitar la <strong>terminación del contrato sin penalidad</strong>.</li>
+                    <li>En dicho caso, AuraSync devolverá el <strong>100% del setup inicial ($1,900)</strong> y no se cobrará la primera mensualidad.</li>
+                    <li>Esta garantía aplica <strong>una sola vez</strong> y solo durante el primer mes calendario desde la fecha de activación.</li>
+                    <li>Para hacer válida la garantía, el cliente debe reportar por escrito los incumplimientos con evidencia (screenshots, registros de conversación) dentro del período de 30 días.</li>
+                </ol>
+            </div>
+
+            <div class="warning-box p-4 rounded-lg mt-4 text-sm">
+                <strong class="text-red-800">Exclusiones de la garantía:</strong> La garantía no aplica si el incumplimiento es causado por: (a) fallas de internet del cliente, (b) cambios no autorizados en la configuración por parte del cliente, (c) indisponibilidad de los servidores de WhatsApp o Meta, (d) no proporcionar acceso a los sistemas necesarios.
+            </div>
+        </section>
+
+        <!-- 6. VIGENCIA Y TERMINACIÓN -->
+        <section class="mb-10">
+            <h3 class="section-title text-xl font-bold mb-4">6. Vigencia y Terminación</h3>
+
+            <div class="space-y-4 text-sm text-gray-700">
+                <div class="flex gap-4 items-start">
+                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 text-blue-900 font-bold">1</div>
+                    <div>
+                        <strong class="text-blue-900">Vigencia mínima:</strong> El contrato tiene una vigencia inicial de <strong>3 meses</strong>, contados desde la fecha de activación. Durante este período, ninguna parte puede dar por terminado el contrato sin causa justificada.
+                    </div>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 text-blue-900 font-bold">2</div>
+                    <div>
+                        <strong class="text-blue-900">Renovación:</strong> Vencido el período inicial, el contrato se renueva automáticamente por períodos de 1 mes, salvo que cualquiera de las partes notifique por escrito su intención de no renovar con al menos <strong>15 días de anticipación</strong>.
+                    </div>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 text-blue-900 font-bold">3</div>
+                    <div>
+                        <strong class="text-blue-900">Terminación por incumplimiento:</strong> Cualquiera de las partes puede dar por terminado el contrato con efecto inmediato si la otra parte incumple sustancialmente sus obligaciones y no subsana dicho incumplimiento dentro de los <strong>10 días hábiles</strong> siguientes a la notificación por escrito.
+                    </div>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 text-blue-900 font-bold">4</div>
+                    <div>
+                        <strong class="text-blue-900">Terminación por fuerza mayor:</strong> Ninguna parte será responsable por el incumplimiento de sus obligaciones derivado de causas de fuerza mayor (desastres naturales, fallas de infraestructura crítica de terceros, regulaciones gubernamentales).
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. CONFIDENCIALIDAD -->
+        <section class="mb-10">
+            <h3 class="section-title text-xl font-bold mb-4">7. Confidencialidad y Protección de Datos</h3>
+            <p class="text-sm text-gray-700 mb-4">
+                AuraSync se compromete a:
+            </p>
+            <ul class="text-sm text-gray-700 space-y-2 list-disc list-inside">
+                <li>No compartir, vender ni utilizar los datos de los clientes finales del salón para fines distintos a la prestación del servicio contratado.</li>
+                <li>Mantener la información comercial del cliente (precios, horarios, nombres de especialistas) bajo estricta confidencialidad.</li>
+                <li>Cumplir con la normativa vigente de protección de datos personales (Ley Orgánica de Protección de Datos Personales del Ecuador).</li>
+                <li>Permitir al cliente solicitar la eliminación completa de sus datos dentro de los 30 días siguientes a la terminación del contrato.</li>
+            </ul>
+        </section>
+
+        <!-- 8. LIMITACIÓN DE RESPONSABILIDAD -->
+        <section class="mb-10">
+            <h3 class="section-title text-xl font-bold mb-4">8. Limitación de Responsabilidad</h3>
+
+            <div class="warning-box p-5 rounded-lg text-sm">
+                <p class="text-gray-800 mb-3">
+                    <strong>Esta sección es fundamental para la protección de ambas partes:</strong>
+                </p>
+                <ol class="text-gray-700 space-y-2 list-decimal list-inside">
+                    <li>La responsabilidad total de AuraSync por cualquier reclamo relacionado con este contrato <strong>no excederá el monto total pagado por el cliente en los últimos 3 meses</strong> de servicio.</li>
+                    <li>AuraSync <strong>no será responsable</strong> por: (a) pérdida de ganancias indirectas, (b) daños reputacionales del salón por causas ajenas al servicio, (c) fallas causadas por terceros (WhatsApp, Meta, proveedores de internet).</li>
+                    <li>El cliente reconoce que AuraSync es una herramienta de soporte operativo y que <strong>la responsabilidad final de la atención al cliente y la calidad del servicio prestado por el salón recae exclusivamente en el salón</strong>.</li>
+                    <li>AuraSync no garantiza la conversión de consultas en citas confirmadas, ya que esto depende de factores externos (disponibilidad del cliente final, precios, ubicación).</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- 9. MODIFICACIONES -->
+        <section class="mb-10">
+            <h3 class="section-title text-xl font-bold mb-4">9. Modificaciones al SLA</h3>
+            <p class="text-sm text-gray-700">
+                Cualquier modificación a este SLA deberá ser acordada por escrito por ambas partes. AuraSync podrá proponer mejoras a las métricas o adición de nuevos servicios, pero ningún cambio será efectivo sin la firma de un addendum por ambas partes.
+            </p>
+        </section>
+
+        <!-- 10. FIRMAS -->
+        <section class="mb-10">
+            <h3 class="section-title text-xl font-bold mb-4">10. Aceptación y Firmas</h3>
+            <p class="text-sm text-gray-700 mb-8">
+                Al firmar el contrato de servicio de AuraSync, ambas partes reconocen haber leído, comprendido y aceptado los términos de este Acuerdo de Nivel de Servicio.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <p class="font-bold text-blue-900 mb-1">Por AuraSync</p>
+                    <p class="text-sm text-gray-500 mb-8">Proveedor del servicio</p>
+                    <div class="signature-line">
+                        <p class="text-sm font-semibold">Nombre completo:</p>
+                        <p class="text-sm text-gray-500 mb-4">_________________________________</p>
+                        <p class="text-sm font-semibold">Cargo:</p>
+                        <p class="text-sm text-gray-500 mb-4">_________________________________</p>
+                        <p class="text-sm font-semibold">Firma:</p>
+                        <p class="text-sm text-gray-500 mb-4">_________________________________</p>
+                        <p class="text-sm font-semibold">Fecha:</p>
+                        <p class="text-sm text-gray-500">_________________________________</p>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="font-bold text-blue-900 mb-1">Por el Cliente</p>
+                    <p class="text-sm text-gray-500 mb-8">Salón / Cadena de belleza</p>
+                    <div class="signature-line">
+                        <p class="text-sm font-semibold">Nombre completo:</p>
+                        <p class="text-sm text-gray-500 mb-4">_________________________________</p>
+                        <p class="text-sm font-semibold">Cargo / Representante legal:</p>
+                        <p class="text-sm text-gray-500 mb-4">_________________________________</p>
+                        <p class="text-sm font-semibold">Firma:</p>
+                        <p class="text-sm text-gray-500 mb-4">_________________________________</p>
+                        <p class="text-sm font-semibold">Fecha:</p>
+                        <p class="text-sm text-gray-500">_________________________________</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <div class="mt-16 pt-8 border-t border-gray-200 text-center text-xs text-gray-400">
+            <p>AuraSync — El Estándar de Oro Operativo</p>
+            <p>WhatsApp: +593 99 543 0859 | Email: hola@aurasync.ec</p>
+            <p class="mt-2">© 2026 AuraSync. Todos los derechos reservados.</p>
+            <p class="mt-1">Documento confidencial. Uso exclusivo entre las partes firmantes.</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
